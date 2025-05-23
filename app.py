@@ -3,6 +3,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 import random
 import logging
+import os
 from datetime import datetime
 
 app = Flask(__name__)
@@ -143,5 +144,7 @@ def chat():
             "error": "processing_error"
         })
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
